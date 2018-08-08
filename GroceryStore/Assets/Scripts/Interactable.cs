@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
+    private Item thisItem;
+    private UIHandler handlerUI;
+
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Start ()
+    {
+        thisItem = GetComponent<Item>();
+        handlerUI = GameObject.FindWithTag("GameController").transform.GetComponent<UIHandler>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,9 +25,8 @@ public class Interactable : MonoBehaviour
 
     public bool Hover()
     {
-        Debug.Log("HOVERING");
-
         // display UI data
+        handlerUI.DisplayItemInfo(thisItem.GetItemName(), thisItem.GetItemType().ToString(), thisItem.GetInteractType());
 
         // item glow
 
@@ -30,7 +35,7 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("INTERACTING");
+        Debug.Log("INTERACTED!");
 
         // add item to inventory
     }

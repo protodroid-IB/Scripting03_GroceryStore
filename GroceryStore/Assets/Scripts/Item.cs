@@ -17,6 +17,9 @@ public class Item : MonoBehaviour
     [SerializeField]
     private bool canInteract = true;
 
+    [SerializeField]
+    private string interactType = "collect";
+
     private SpriteRenderer thisSR;
     private Interactable interactable;
 
@@ -61,5 +64,10 @@ public class Item : MonoBehaviour
     {
         canInteract = inBool;
         interactable.enabled = inBool;
+    }
+
+    public string GetInteractType()
+    {
+        return interactType;
     }
 }

@@ -19,14 +19,15 @@ public class Interact : MonoBehaviour
     [SerializeField]
     private bool debugMode = false;
 
-   // private LineRenderer lineOfSight;
+
+    private GameObject itemInfoUI;
+
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         mainCam = Camera.main;
-       // lineOfSight = GetComponent<LineRenderer>();
-
+        itemInfoUI = GameObject.FindWithTag("ItemInfoUI");
     }
 	
 	// Update is called once per frame
@@ -52,6 +53,8 @@ public class Interact : MonoBehaviour
 
             if(interactable != null)
             {
+                itemInfoUI.SetActive(true);
+
                 interactable.Hover();
 
                 if(Input.GetMouseButtonDown(0))
@@ -59,26 +62,22 @@ public class Interact : MonoBehaviour
                     interactable.Interact();
                 }
             }
+            else
+            {
+                itemInfoUI.SetActive(false);
+            }
         }
         else
         {
             rayDirectionPoint = rayOrigin + (mainCam.transform.forward * interactRange);
             gameObjectHit = emptyGO;
+            itemInfoUI.SetActive(false);
         }
 
 
         if (debugMode == true)
         {
-            //if (lineOfSight.enabled == false) lineOfSight.enabled = true;
-
-            //lineOfSight.SetPosition(0, rayOrigin);
-            //lineOfSight.SetPosition(1, rayDirectionPoint);
-
             Debug.Log("HIT: " + gameObjectHit);
-        }
-        else
-        {
-            //if (lineOfSight == true) lineOfSight.enabled = false;
         }
     }
 
