@@ -21,6 +21,7 @@ public class Interact : MonoBehaviour
 
 
     private GameObject itemInfoUI;
+    private InventoryController inventory;
 
 
 	// Use this for initialization
@@ -28,12 +29,18 @@ public class Interact : MonoBehaviour
     {
         mainCam = Camera.main;
         itemInfoUI = GameObject.FindWithTag("ItemInfoUI");
+        inventory = GameObject.FindWithTag("GameController").GetComponent<InventoryController>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         LookAt();
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            inventory.ClearInventory();
+        }
 	}
 
 
@@ -59,7 +66,8 @@ public class Interact : MonoBehaviour
 
                 if(Input.GetMouseButtonDown(0))
                 {
-                    interactable.Interact();
+                    Item newItem = interactable.GetInteractedItem();
+                    inventory.AddItem(newItem);
                 }
             }
             else

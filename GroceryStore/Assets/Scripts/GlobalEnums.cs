@@ -2,4 +2,4 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { None, Fruit, Vegetable };
+public enum ItemType { None, Fruit, Vegetable, Device};

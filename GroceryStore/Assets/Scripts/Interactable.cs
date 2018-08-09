@@ -33,10 +33,14 @@ public class Interactable : MonoBehaviour
         return true;
     }
 
-    public void Interact()
+    public Item GetInteractedItem()
     {
         Debug.Log("INTERACTED!");
 
-        // add item to inventory
+        if (thisItem.GetItemType() != ItemType.Device)
+        {
+            return thisItem;
+        }
+        else return null;
     }
 }
