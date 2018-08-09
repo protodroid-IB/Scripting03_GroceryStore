@@ -6,6 +6,7 @@ using UnityEngine;
 public class Interact : MonoBehaviour
 {
     private Camera mainCam;
+    private GameController gameController;
 
     [SerializeField]
     private float interactRange = 20f;
@@ -24,12 +25,15 @@ public class Interact : MonoBehaviour
     private InventoryController inventory;
 
 
-	// Use this for initialization
-	void Awake ()
+
+    // Use this for initialization
+    void Awake ()
     {
         mainCam = Camera.main;
         itemInfoUI = GameObject.FindWithTag("ItemInfoUI");
         inventory = GameObject.FindWithTag("GameController").GetComponent<InventoryController>();
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+
     }
 	
 	// Update is called once per frame
@@ -62,7 +66,7 @@ public class Interact : MonoBehaviour
             {
                 if (interactable.GetInteractable())
                 {
-                    itemInfoUI.SetActive(true);
+                    if(!gameController.GetNPCTalking()) itemInfoUI.SetActive(true);
 
                     interactable.Hover();
 
@@ -78,6 +82,11 @@ public class Interact : MonoBehaviour
 
                             case ItemType.Door:
                                 newItem.GetComponent<Door>().TryToOpen();
+                                itemInfoUI.SetActive(false);
+                                break;
+
+                            case ItemType.NPC:
+                                newItem.GetComponent<NPCDialogue>().Talk();
                                 itemInfoUI.SetActive(false);
                                 break;
                         }

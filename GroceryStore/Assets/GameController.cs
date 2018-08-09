@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
+    private bool npcTalking = false;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -16,4 +18,14 @@ public class GameController : MonoBehaviour
     {
 		
 	}
+
+    public void SetNPCTalking(bool inBool)
+    {
+        npcTalking = inBool;
+    }
+
+    public bool GetNPCTalking()
+    {
+        return npcTalking;
+    }
 }
