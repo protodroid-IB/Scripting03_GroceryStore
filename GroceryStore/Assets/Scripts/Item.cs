@@ -25,8 +25,12 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-        thisSR = GetComponent<SpriteRenderer>();
-        thisSR.sprite = sprite;
+        if(itemType.Equals(ItemType.Stock))
+        {
+            thisSR = GetComponent<SpriteRenderer>();
+            thisSR.sprite = sprite;
+        }
+        
 
         interactable = GetComponent<Interactable>();
 
@@ -63,7 +67,7 @@ public class Item : MonoBehaviour
     public void SetInteract(bool inBool)
     {
         canInteract = inBool;
-        interactable.enabled = inBool;
+        interactable.SetInteract(canInteract);
     }
 
     public string GetInteractType()

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Item))]
 public class Interactable : MonoBehaviour
 {
     private Item thisItem;
     private UIHandler handlerUI;
+
+    private bool canInteract = true;
 
 
 	// Use this for initialization
@@ -14,6 +17,7 @@ public class Interactable : MonoBehaviour
     {
         thisItem = GetComponent<Item>();
         handlerUI = GameObject.FindWithTag("GameController").transform.GetComponent<UIHandler>();
+        canInteract = thisItem.GetInteract();
     }
 	
 	// Update is called once per frame
@@ -37,10 +41,17 @@ public class Interactable : MonoBehaviour
     {
         Debug.Log("INTERACTED!");
 
-        if (thisItem.GetItemType() != ItemType.Device)
-        {
-            return thisItem;
-        }
-        else return null;
+        return thisItem;
+    }
+
+
+    public void SetInteract(bool inBool)
+    {
+        canInteract = inBool;
+    }
+
+    public bool GetInteractable()
+    {
+        return canInteract;
     }
 }

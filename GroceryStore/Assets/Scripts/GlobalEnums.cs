@@ -2,4 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { None, Fruit, Vegetable, Device};
+public enum ItemType { None, Stock, Door};
+
+public enum DoorState { Locked, Unlocked};

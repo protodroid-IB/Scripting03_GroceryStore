@@ -8,7 +8,7 @@ public class UIHandler : MonoBehaviour
     private GameObject itemInfoUI;
     private GameObject grabbedItemBoxesUI;
 
-    private Text nameUI, typeUI, interactTypeUI;
+    private Text nameUI, interactTypeUI;
 
     private List<Image> inventoryUI = new List<Image>();
 
@@ -22,8 +22,7 @@ public class UIHandler : MonoBehaviour
         grabbedItemBoxesUI = GameObject.FindWithTag("GrabbedItemBoxesUI");
 
         nameUI = itemInfoUI.transform.GetChild(0).GetComponent<Text>();
-        typeUI = itemInfoUI.transform.GetChild(1).GetComponent<Text>();
-        interactTypeUI = itemInfoUI.transform.GetChild(2).GetComponent<Text>();
+        interactTypeUI = itemInfoUI.transform.GetChild(1).GetComponent<Text>();
 
         int i = 0;
         foreach(Transform child in grabbedItemBoxesUI.transform)
@@ -40,8 +39,7 @@ public class UIHandler : MonoBehaviour
     public void DisplayItemInfo(string inName, string inType, string inInteractionType)
     {
         nameUI.text = inName.ToUpper();
-        typeUI.text = inType.ToUpper();
-        interactTypeUI.text = inInteractionType.ToUpper();
+        interactTypeUI.text = "LEFT MOUSE CLICK TO " + inInteractionType.ToUpper();
     }
 
 

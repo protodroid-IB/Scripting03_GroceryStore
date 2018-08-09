@@ -60,14 +60,29 @@ public class Interact : MonoBehaviour
 
             if(interactable != null)
             {
-                itemInfoUI.SetActive(true);
-
-                interactable.Hover();
-
-                if(Input.GetMouseButtonDown(0))
+                if (interactable.GetInteractable())
                 {
-                    Item newItem = interactable.GetInteractedItem();
-                    inventory.AddItem(newItem);
+                    itemInfoUI.SetActive(true);
+
+                    interactable.Hover();
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Item newItem = interactable.GetInteractedItem();
+
+                        switch (newItem.GetItemType())
+                        {
+                            case ItemType.Stock:
+                                inventory.AddItem(newItem);
+                                break;
+
+                            case ItemType.Door:
+                                newItem.GetComponent<Door>().TryToOpen();
+                                itemInfoUI.SetActive(false);
+                                break;
+                        }
+
+                    }
                 }
             }
             else
