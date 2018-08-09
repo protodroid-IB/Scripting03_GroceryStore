@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    private GameController gameController;
+
     private DoorState currentState = DoorState.Locked;
 
     private GameObject doorFrameL, doorFrameR;
 
     [SerializeField]
-    private bool canUnlock = true;
+    private bool canUnlock = false;
+
+    private bool foundDoor = false;
 
 
     private void Start()
     {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        gameController.SetManagersDoor(this);
+
         doorFrameL = transform.GetChild(0).gameObject;
         doorFrameR = transform.GetChild(1).gameObject;
     }
@@ -51,11 +58,27 @@ public class Door : MonoBehaviour
         {
             UnlockDoor();
         }
+
+        if(canUnlock == false && foundDoor == false)
+        {
+            foundDoor = true;
+        }
+
     }
 
 
     public void SetCanUnlock(bool inActive)
     {
         canUnlock = inActive;
+    }
+
+    public bool GetCanUnlock()
+    {
+        return canUnlock;
+    }
+
+    public bool GetFoundDoor()
+    {
+        return foundDoor;
     }
 }
