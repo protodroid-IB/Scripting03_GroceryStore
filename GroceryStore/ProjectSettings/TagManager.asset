@@ -8,6 +8,7 @@ TagManager:
   - GrabbedItemBoxesUI
   - DialogueUI
   - ObjectiveUI
+  - KeycodeUI
   layers:
   - Default
   - TransparentFX

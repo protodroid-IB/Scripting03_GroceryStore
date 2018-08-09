@@ -26,7 +26,6 @@ public class NPCDialogue : MonoBehaviour
     public void Talk()
     {
         isTalking = true;
-        Debug.Log("NPC TALK!");
 
         fpsController.enabled = false;
         gameController.SetNPCTalking(isTalking);

@@ -8,9 +8,13 @@ public class UIHandler : MonoBehaviour
     private GameObject itemInfoUI;
     private GameObject grabbedItemBoxesUI;
     private GameObject objectiveUI;
+    private GameObject keycodeUI;
+
     private GameController gameController;
+    
 
     private Text nameUI, interactTypeUI, objective;
+    private Text[] keycodeDigits;
 
     private List<Image> inventoryUI = new List<Image>();
 
@@ -25,6 +29,7 @@ public class UIHandler : MonoBehaviour
         itemInfoUI = GameObject.FindWithTag("ItemInfoUI");
         grabbedItemBoxesUI = GameObject.FindWithTag("GrabbedItemBoxesUI");
         objectiveUI = GameObject.FindWithTag("ObjectiveUI");
+        keycodeUI = GameObject.FindWithTag("KeycodeUI");
 
         nameUI = itemInfoUI.transform.GetChild(0).GetComponent<Text>();
         interactTypeUI = itemInfoUI.transform.GetChild(1).GetComponent<Text>();
@@ -39,7 +44,15 @@ public class UIHandler : MonoBehaviour
             i++;
         }
 
+        keycodeDigits = new Text[keycodeUI.transform.childCount];
+
+        for (int j = 1; j < keycodeUI.transform.childCount; j++)
+        {
+            keycodeDigits[j] = keycodeUI.transform.GetChild(j).GetComponent<Text>();
+        }
+
         itemInfoUI.SetActive(false);
+        keycodeUI.SetActive(false);
     }
 	
 
@@ -80,6 +93,17 @@ public class UIHandler : MonoBehaviour
 
             objective.text = newObjective.ToUpper();
         }
+
+        if(gameController.GetObjectiveState() == ObjectiveState.FindKey || gameController.GetObjectiveState() == ObjectiveState.KeyFound)
+        {
+            if (keycodeUI.activeSelf == false) keycodeUI.SetActive(true);
+        }
+        else
+        {
+            if (keycodeUI.activeSelf == true) keycodeUI.SetActive(false);
+        }
+
+        
         
     }
 }

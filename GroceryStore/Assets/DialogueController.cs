@@ -31,9 +31,6 @@ public class DialogueController : MonoBehaviour
 	void Update ()
     {
         ProgressDialogue();
-
-        Debug.Log(dialogueUI.activeSelf);
-        
 	}
 
 
