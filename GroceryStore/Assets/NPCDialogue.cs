@@ -8,19 +8,20 @@ public class NPCDialogue : MonoBehaviour
     private bool isTalking = false;
     private FirstPersonController fpsController;
     private GameController gameController;
+    private DialogueController dialogueController;
+
+    [SerializeField]
+    private string[] dialogue;
+
 
     // Use this for initialization
     void Start ()
     {
         fpsController = GameObject.FindWithTag("Player").GetComponent<FirstPersonController>();
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        dialogueController = GameObject.FindWithTag("GameController").GetComponent<DialogueController>();
     }
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 
     public void Talk()
     {
@@ -30,7 +31,7 @@ public class NPCDialogue : MonoBehaviour
         fpsController.enabled = false;
         gameController.SetNPCTalking(isTalking);
 
-        Invoke("NotTalking", 3f);
+        dialogueController.StartDialogue(this, dialogue);
     }
 
     public void SetTalking(bool inTalking)
@@ -43,7 +44,7 @@ public class NPCDialogue : MonoBehaviour
         return isTalking;
     }
 
-    private void NotTalking()
+    public void NotTalking()
     {
         isTalking = false;
         fpsController.enabled = true;

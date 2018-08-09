@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ItemInfoUI
   - GrabbedItemBoxesUI
+  - DialogueUI
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,8 @@ public class Interact : MonoBehaviour
 {
     private Camera mainCam;
     private GameController gameController;
+    private DialogueController dialogueController;
+    private GameObject dialogueUI;
 
     [SerializeField]
     private float interactRange = 20f;
@@ -33,6 +35,8 @@ public class Interact : MonoBehaviour
         itemInfoUI = GameObject.FindWithTag("ItemInfoUI");
         inventory = GameObject.FindWithTag("GameController").GetComponent<InventoryController>();
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        dialogueController = GameObject.FindWithTag("GameController").GetComponent<DialogueController>();
+        dialogueUI = GameObject.FindWithTag("DialogueUI").gameObject;
 
     }
 	
@@ -70,7 +74,7 @@ public class Interact : MonoBehaviour
 
                     interactable.Hover();
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0) && !dialogueController.DialogueStarted())
                     {
                         Item newItem = interactable.GetInteractedItem();
 

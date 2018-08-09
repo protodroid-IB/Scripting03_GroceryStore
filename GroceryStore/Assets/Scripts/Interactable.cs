@@ -39,8 +39,6 @@ public class Interactable : MonoBehaviour
 
     public Item GetInteractedItem()
     {
-        Debug.Log("INTERACTED!");
-
         return thisItem;
     }
 
