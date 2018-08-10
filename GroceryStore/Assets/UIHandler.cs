@@ -29,7 +29,7 @@ public class UIHandler : MonoBehaviour
         itemInfoUI = GameObject.FindWithTag("ItemInfoUI");
         grabbedItemBoxesUI = GameObject.FindWithTag("GrabbedItemBoxesUI");
         objectiveUI = GameObject.FindWithTag("ObjectiveUI");
-        keycodeUI = GameObject.FindWithTag("KeycodeUI");
+        
 
         nameUI = itemInfoUI.transform.GetChild(0).GetComponent<Text>();
         interactTypeUI = itemInfoUI.transform.GetChild(1).GetComponent<Text>();
@@ -44,12 +44,7 @@ public class UIHandler : MonoBehaviour
             i++;
         }
 
-        keycodeDigits = new Text[keycodeUI.transform.childCount];
-
-        for (int j = 1; j < keycodeUI.transform.childCount; j++)
-        {
-            keycodeDigits[j] = keycodeUI.transform.GetChild(j).GetComponent<Text>();
-        }
+        UpdateKeycodeReferences();
 
         itemInfoUI.SetActive(false);
         keycodeUI.SetActive(false);
@@ -102,8 +97,30 @@ public class UIHandler : MonoBehaviour
         {
             if (keycodeUI.activeSelf == true) keycodeUI.SetActive(false);
         }
+    }
 
-        
-        
+
+    public void UpdateKeyCodeDigits(int[] inDigits)
+    {
+        UpdateKeycodeReferences();
+
+        for (int i=0; i < inDigits.Length; i++)
+        {
+            if (inDigits[i] == -1) keycodeDigits[i].text = "?";
+            else keycodeDigits[i].text = inDigits[i].ToString();
+        }
+    }
+
+
+    private void UpdateKeycodeReferences()
+    {
+        keycodeUI = GameObject.FindWithTag("KeycodeUI");
+
+        keycodeDigits = new Text[keycodeUI.transform.childCount-1];
+
+        for (int j = 0; j < keycodeDigits.Length; j++)
+        {
+            keycodeDigits[j] = keycodeUI.transform.GetChild(j+1).GetComponent<Text>();
+        }
     }
 }

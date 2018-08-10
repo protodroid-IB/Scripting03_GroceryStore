@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPCMission : MonoBehaviour
 {
+    private GameController gameController;
+
     private NPCDialogue npcDialogue;
 
     private InventoryController inventory;
@@ -34,6 +36,7 @@ public class NPCMission : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         inventory = GameObject.FindWithTag("GameController").GetComponent<InventoryController>();
         npcDialogue = GetComponent<NPCDialogue>();
     }
@@ -41,6 +44,7 @@ public class NPCMission : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
 		switch(currentMissionState)
         {
             case NPCMissionState.None:
@@ -97,6 +101,7 @@ public class NPCMission : MonoBehaviour
         if(npcDialogue.GetHasSpoken())
         {
             currentMissionState = NPCMissionState.AfterMission;
+            gameController.DigitFound(Random.Range(0, 10));
             npcDialogue.SetHasSpoken(false);
         }
     }

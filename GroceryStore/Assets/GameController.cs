@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private Door managersDoor;
 
     private bool keycodeFound = false;
+    private int digitsFound = 0;
+    private int[] digits;
 
 	// Use this for initialization
 	void Start ()
@@ -26,6 +28,13 @@ public class GameController : MonoBehaviour
         objectives[0] = "Find The Manager's Office!";
         objectives[1] = "Find The Keycode for the storeroom!";
         objectives[2] = "Complain to the Manager!";
+
+        digits = new int[4];
+
+        for (int i = 0; i < digits.Length; i++)
+        {
+            digits[i] = -1;
+        }
     }
 	
 	// Update is called once per frame
@@ -116,5 +125,33 @@ public class GameController : MonoBehaviour
     public void SetManagersDoor(Door inDoor)
     {
         managersDoor = inDoor;
+    }
+
+    public void DigitFound(int inDigit)
+    {
+        bool set = false;
+
+        for(int i=0; i < digits.Length; i++)
+        {
+            if(digits[i] == -1 && set == false)
+            {
+                digits[i] = inDigit;
+                digitsFound++;
+                set = true;
+            }
+
+            Debug.Log(digits[i].ToString());
+        }
+
+        CheckAllDigitsFound();
+        handlerUI.UpdateKeyCodeDigits(digits);
+    }
+
+    public void CheckAllDigitsFound()
+    {
+        if(digitsFound >= 4)
+        {
+            keycodeFound = true;
+        }
     }
 }
