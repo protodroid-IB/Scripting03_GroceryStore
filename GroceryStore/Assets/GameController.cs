@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     private UIHandler handlerUI;
 
+    [SerializeField]
     private ObjectiveState currentObjectiveState = ObjectiveState.Start;
 
     private string[] objectives;
@@ -82,7 +83,7 @@ public class GameController : MonoBehaviour
     {
         if (keycodeFound == true)
         {
-            managersDoor.SetCanUnlock(true);
+            //managersDoor.SetCanUnlock(true);
             currentObjectiveState = ObjectiveState.KeyFound;
         }
 
@@ -93,6 +94,7 @@ public class GameController : MonoBehaviour
     private void KeyFound()
     {
         handlerUI.UpdateObjective(objectives[2]);
+        managersDoor.SetCanUnlock(true);
     }
 
 

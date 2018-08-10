@@ -44,35 +44,37 @@ public class NPCMission : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
-		switch(currentMissionState)
+        if (gameController.GetObjectiveState() == ObjectiveState.FindKey || gameController.GetObjectiveState() == ObjectiveState.KeyFound)
         {
-            case NPCMissionState.None:
-                SetNoneDialogue();
-                break;
+            switch (currentMissionState)
+            {
+                case NPCMissionState.None:
+                    SetNoneDialogue();
+                    break;
 
-            case NPCMissionState.HasMission:
-                SetHasMissionDialogue();
-                HasMission();
-                break;
+                case NPCMissionState.HasMission:
+                    SetHasMissionDialogue();
+                    HasMission();
+                    break;
 
-            case NPCMissionState.MissionStarted:
-                SetMissionStartedDialogue();
-                MissionStarted();
-                break;
+                case NPCMissionState.MissionStarted:
+                    SetMissionStartedDialogue();
+                    MissionStarted();
+                    break;
 
-            case NPCMissionState.MissionFinished:
-                SetMissionFinishedDialogue();
-                MissionFinished();
-                break;
+                case NPCMissionState.MissionFinished:
+                    SetMissionFinishedDialogue();
+                    MissionFinished();
+                    break;
 
-            case NPCMissionState.AfterMission:
-                SetAfterMissionDialogue();
-                break;
+                case NPCMissionState.AfterMission:
+                    SetAfterMissionDialogue();
+                    break;
 
-            default:
-                SetNoneDialogue();
-                break;
+                default:
+                    SetNoneDialogue();
+                    break;
+            }
         }
 	}
 
@@ -103,6 +105,7 @@ public class NPCMission : MonoBehaviour
             currentMissionState = NPCMissionState.AfterMission;
             gameController.DigitFound(Random.Range(0, 10));
             npcDialogue.SetHasSpoken(false);
+            inventory.ClearInventory();
         }
     }
 

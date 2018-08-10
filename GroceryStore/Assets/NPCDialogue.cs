@@ -62,7 +62,11 @@ public class NPCDialogue : MonoBehaviour
         isTalking = false;
         fpsController.enabled = true;
         gameController.SetNPCTalking(isTalking);
-        hasSpoken = true;
+
+        if (gameController.GetObjectiveState() == ObjectiveState.FindKey || gameController.GetObjectiveState() == ObjectiveState.KeyFound)
+        {
+            hasSpoken = true;
+        }
     }
 
     public void SetDialogue(string[] inDialogueArray, NPCMissionState inState)

@@ -15,6 +15,7 @@ public class Door : MonoBehaviour
 
     private bool foundDoor = false;
 
+    private Animator animDoorL, animDoorR;
 
     private void Start()
     {
@@ -23,6 +24,9 @@ public class Door : MonoBehaviour
 
         doorFrameL = transform.GetChild(0).gameObject;
         doorFrameR = transform.GetChild(1).gameObject;
+
+        animDoorL = transform.GetChild(0).GetComponent<Animator>();
+        animDoorR = transform.GetChild(1).GetComponent<Animator>();
     }
 
     public void UnlockDoor()
@@ -32,8 +36,10 @@ public class Door : MonoBehaviour
             currentState = DoorState.Unlocked;
         }
 
-        doorFrameL.SetActive(false);
-        doorFrameR.SetActive(false);
+        Debug.Log("TRIGGERED!");
+
+        animDoorL.SetTrigger("OpenDoor");
+        animDoorR.SetTrigger("OpenDoor");
 
         transform.GetComponent<Item>().SetInteract(false);
         
