@@ -74,4 +74,21 @@ public class Item : MonoBehaviour
     {
         return interactType;
     }
+
+
+
+    public bool Equals(Item inItem)
+    {
+        bool isEqual = false;
+
+        if(inItem.GetItemType() == GetItemType())
+        {
+            if(inItem.GetItemName() == GetItemName())
+            {
+                isEqual = true;
+            }
+        }
+
+        return isEqual;
+    }
 }

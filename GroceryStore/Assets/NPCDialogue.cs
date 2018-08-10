@@ -13,6 +13,11 @@ public class NPCDialogue : MonoBehaviour
     [SerializeField]
     private string[] dialogue;
 
+    private NPCMission npcMission;
+    private NPCMissionState currentNPCMissionState = NPCMissionState.NotSet;
+
+    private bool hasSpoken = false;
+
 
     // Use this for initialization
     void Start ()
@@ -20,6 +25,7 @@ public class NPCDialogue : MonoBehaviour
         fpsController = GameObject.FindWithTag("Player").GetComponent<FirstPersonController>();
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         dialogueController = GameObject.FindWithTag("GameController").GetComponent<DialogueController>();
+        npcMission = GetComponent<NPCMission>();
     }
 	
 
@@ -29,6 +35,14 @@ public class NPCDialogue : MonoBehaviour
 
         fpsController.enabled = false;
         gameController.SetNPCTalking(isTalking);
+
+        if(currentNPCMissionState == NPCMissionState.MissionStarted)
+        {
+            if(npcMission.CheckMissionComplete())
+            {
+                dialogue = npcMission.GetMissionCompleteDialogue();
+            }
+        }
 
         dialogueController.StartDialogue(this, dialogue);
     }
@@ -48,5 +62,28 @@ public class NPCDialogue : MonoBehaviour
         isTalking = false;
         fpsController.enabled = true;
         gameController.SetNPCTalking(isTalking);
+        hasSpoken = true;
     }
+
+    public void SetDialogue(string[] inDialogueArray, NPCMissionState inState)
+    {
+        if(currentNPCMissionState != inState)
+        {
+            dialogue = inDialogueArray;
+        }
+
+        currentNPCMissionState = inState;
+    }
+
+    public bool GetHasSpoken()
+    {
+        return hasSpoken;
+    }
+
+    public void SetHasSpoken(bool inBool)
+    {
+        hasSpoken = inBool;
+    }
+
+
 }

@@ -92,4 +92,12 @@ public class InventoryController : MonoBehaviour
 
         handlerUI.UpdateInventoryUI(inventoryList);
     }
+
+
+    public Item[] GetInventoryArray()
+    {
+        return inventoryList.ToArray();
+    }
+
+
 }
