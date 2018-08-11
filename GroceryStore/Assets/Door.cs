@@ -17,10 +17,14 @@ public class Door : MonoBehaviour
 
     private Animator animDoorL, animDoorR;
 
+    [SerializeField]
+    private bool isManagersDoor = false;
+
     private void Start()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        gameController.SetManagersDoor(this);
+
+        if(isManagersDoor) gameController.SetManagersDoor(this);
 
         doorFrameL = transform.GetChild(0).gameObject;
         doorFrameR = transform.GetChild(1).gameObject;

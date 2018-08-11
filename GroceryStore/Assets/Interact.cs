@@ -93,6 +93,10 @@ public class Interact : MonoBehaviour
                                 newItem.GetComponent<NPCDialogue>().Talk();
                                 itemInfoUI.SetActive(false);
                                 break;
+
+                            case ItemType.Freezer:
+                                newItem.GetComponent<Freezer>().Interact();
+                                break;
                         }
 
                     }

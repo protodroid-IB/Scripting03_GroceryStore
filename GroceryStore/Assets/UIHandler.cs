@@ -123,4 +123,12 @@ public class UIHandler : MonoBehaviour
             keycodeDigits[j] = keycodeUI.transform.GetChild(j+1).GetComponent<Text>();
         }
     }
+
+
+
+    public void UpdateObjectiveDialogue(string inObjective)
+    {
+
+        GameObject.FindWithTag("ObjectiveDialogue").transform.GetChild(2).GetComponent<Text>().text = inObjective.ToUpper();
+    }
 }

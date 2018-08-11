@@ -9,6 +9,8 @@ TagManager:
   - DialogueUI
   - ObjectiveUI
   - KeycodeUI
+  - ScreenFader
+  - ObjectiveDialogue
   layers:
   - Default
   - TransparentFX

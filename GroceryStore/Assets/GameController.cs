@@ -1,13 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class GameController : MonoBehaviour
 {
+    private FirstPersonController fpsController;
+    private ScreenFader screenFader;
     private UIHandler handlerUI;
+    private NarrativeDialogue narrativeDialogue;
+    private GameObject objectiveDialogue;
 
     [SerializeField]
     private ObjectiveState currentObjectiveState = ObjectiveState.Start;
+
+    [SerializeField]
+    private bool skipStart = true;
+
+    private float timer = 0f;
+    private float startToFirstMissionTime = 0.5f;
 
     private string[] objectives;
 
@@ -22,6 +33,13 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        screenFader = GameObject.FindWithTag("ScreenFader").GetComponent<ScreenFader>();
+        narrativeDialogue = GetComponent<NarrativeDialogue>();
+        fpsController = GameObject.FindWithTag("Player").GetComponent<FirstPersonController>();
+        objectiveDialogue = GameObject.FindWithTag("ObjectiveDialogue");
+
+        objectiveDialogue.SetActive(false);
+
         handlerUI = GetComponent<UIHandler>();
 
         objectives = new string[3];
@@ -49,8 +67,7 @@ public class GameController : MonoBehaviour
         switch(currentObjectiveState)
         {
             case ObjectiveState.Start:
-                // implement start of game!!!!
-                currentObjectiveState = ObjectiveState.ManagerOffice;
+                StartObjective();
                 break;
 
             case ObjectiveState.ManagerOffice:
@@ -68,14 +85,59 @@ public class GameController : MonoBehaviour
     }
 
 
+
+    private void StartObjective()
+    {
+        if(skipStart == false)
+        {
+            fpsController.enabled = false;
+
+            if (narrativeDialogue.IntroNarrativeDone() && screenFader.FadeDone())
+            {
+                if (Timer(ref timer, startToFirstMissionTime, false))
+                {
+                    currentObjectiveState = ObjectiveState.ManagerOffice;
+                    fpsController.enabled = true;
+                }
+            }
+
+            narrativeDialogue.StartIntroNarrative();
+        }
+        else
+        {
+            currentObjectiveState = ObjectiveState.ManagerOffice;
+            fpsController.enabled = true;
+        }
+        
+    }
+
+
+
     private void ManagersOffice()
     {
-        if(managersDoor.GetFoundDoor())
+        if (managersDoor.GetFoundDoor())
         {
-            currentObjectiveState = ObjectiveState.FindKey;
+            fpsController.enabled = false;
+
+            objectiveDialogue.SetActive(true);
+
+            if(objectiveDialogue.activeInHierarchy == true)
+                handlerUI.UpdateObjectiveDialogue(objectives[1]);
+
+            if (Timer(ref timer, 4f, true))
+            {
+                objectiveDialogue.SetActive(false);
+                currentObjectiveState = ObjectiveState.FindKey;
+                fpsController.enabled = true;
+            }
+
+            
         }
 
+
         handlerUI.UpdateObjective(objectives[0]);
+        
+        screenFader.gameObject.SetActive(false);
     }
 
 
@@ -83,8 +145,19 @@ public class GameController : MonoBehaviour
     {
         if (keycodeFound == true)
         {
-            //managersDoor.SetCanUnlock(true);
-            currentObjectiveState = ObjectiveState.KeyFound;
+            fpsController.enabled = false;
+
+            objectiveDialogue.SetActive(true);
+
+            if (objectiveDialogue.activeInHierarchy == true)
+                handlerUI.UpdateObjectiveDialogue(objectives[2]);
+
+            if (Timer(ref timer, 4f, true))
+            {
+                objectiveDialogue.SetActive(false);
+                currentObjectiveState = ObjectiveState.KeyFound;
+                fpsController.enabled = true;
+            }
         }
 
         handlerUI.UpdateObjective(objectives[1]);
@@ -155,5 +228,24 @@ public class GameController : MonoBehaviour
         {
             keycodeFound = true;
         }
+    }
+
+
+    public bool Timer(ref float inTimer, float inTime, bool resetAtCompletion)
+    {
+        bool done = false;
+
+        if(inTimer >= inTime)
+        {
+            done = true;
+
+            if (resetAtCompletion == true) inTimer = 0f;
+        }
+        else
+        {
+            inTimer += Time.deltaTime;
+        }
+
+        return done;
     }
 }
