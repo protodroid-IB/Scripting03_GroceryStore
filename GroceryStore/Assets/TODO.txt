@@ -1,22 +1,16 @@
 TO-DO
 
-
-- outro
-
-- audioscape
-
-- sound effects
-
-- managers room
-
 - stock sprites
 
+- make all NPCs
+
+- credits
+
+- pause menu
 
 
 
 // DESIREABLES
-
-- - stereo playing music
 
 - sale signs / isle signs
 

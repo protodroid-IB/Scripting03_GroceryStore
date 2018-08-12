@@ -33,6 +33,10 @@ public class NPCMission : MonoBehaviour
     [SerializeField]
     private Item[] itemsRequired;
 
+    private List<Item> itemsPickedUp = new List<Item>();
+
+    private bool keyRewarded = false;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -68,6 +72,7 @@ public class NPCMission : MonoBehaviour
                     break;
 
                 case NPCMissionState.AfterMission:
+                    AfterMission();
                     SetAfterMissionDialogue();
                     break;
 
@@ -103,9 +108,20 @@ public class NPCMission : MonoBehaviour
         if(npcDialogue.GetHasSpoken())
         {
             currentMissionState = NPCMissionState.AfterMission;
-            gameController.SetDigitFound(Random.Range(0, 10));
             npcDialogue.SetHasSpoken(false);
             inventory.ClearInventory();
+        }
+    }
+
+    private void AfterMission()
+    {
+        if(npcDialogue.IsTalking() == false)
+        {
+            if (keyRewarded == false)
+            {
+                gameController.SetDigitFound(Random.Range(0, 10));
+                keyRewarded = true;
+            }
         }
     }
 
@@ -149,16 +165,34 @@ public class NPCMission : MonoBehaviour
             {
                 if(inventory.GetInventoryArray()[i].Equals(itemsRequired[j]))
                 {
-                    equalCount++;
+                    if(itemsPickedUp.Count > 0)
+                    {
+                        for (int k = 0; k < itemsPickedUp.Count; k++)
+                        {
+                            if(!inventory.GetInventoryArray()[i].Equals(itemsPickedUp[k]))
+                            {
+                                equalCount++;
+                                itemsPickedUp.Add(inventory.GetInventoryArray()[i]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        equalCount++;
+                        itemsPickedUp.Add(inventory.GetInventoryArray()[i]);
+                    }
                 }
 
                 if (equalCount >= 3)
                 {
                     missionComplete = true;
+                    itemsPickedUp.Clear();
                     return missionComplete;
                 }
             }
         }
+
+        itemsPickedUp.Clear();
 
         return missionComplete;
     }

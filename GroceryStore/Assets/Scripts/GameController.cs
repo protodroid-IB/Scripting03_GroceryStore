@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     private UIHandler handlerUI;
     private NarrativeDialogue narrativeDialogue;
     private GameObject objectiveDialogue;
+    private DialogueController dialogueController;
 
     [SerializeField]
     private ObjectiveState currentObjectiveState = ObjectiveState.Start;
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
     private string[] objectives;
 
     private bool npcTalking = false;
+    private bool talkingToManager = false;
 
     private Door managersDoor;
 
@@ -56,6 +58,8 @@ public class GameController : MonoBehaviour
         {
             digits[i] = -1;
         }
+
+        dialogueController = GetComponent<DialogueController>();
     }
 	
 	// Update is called once per frame
@@ -82,6 +86,10 @@ public class GameController : MonoBehaviour
 
             case ObjectiveState.KeyFound:
                 KeyFound();
+                break;
+
+            case ObjectiveState.Finish:
+                Finish();
                 break;
         }
     }
@@ -186,6 +194,25 @@ public class GameController : MonoBehaviour
     {
         handlerUI.UpdateObjective(objectives[2]);
         managersDoor.SetCanUnlock(true);
+
+        if(dialogueController.GetCurrentNPC().GetItemName().ToUpper() == "MANAGER")
+        {
+            talkingToManager = true;
+        }
+
+        if(talkingToManager == true)
+        {
+            currentObjectiveState = ObjectiveState.Finish;
+            screenFader.gameObject.SetActive(true);
+            narrativeDialogue.StartOutroNarrative();
+            fpsController.enabled = false;
+        }
+    }
+
+
+    private void Finish()
+    {
+        fpsController.enabled = false;
     }
 
 

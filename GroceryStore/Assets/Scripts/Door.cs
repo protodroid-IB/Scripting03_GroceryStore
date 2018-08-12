@@ -20,6 +20,8 @@ public class Door : MonoBehaviour
     [SerializeField]
     private bool isManagersDoor = false;
 
+    private AudioSource openDoorSound;
+
     private void Start()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
@@ -31,6 +33,8 @@ public class Door : MonoBehaviour
 
         animDoorL = transform.GetChild(0).GetComponent<Animator>();
         animDoorR = transform.GetChild(1).GetComponent<Animator>();
+
+        openDoorSound = GetComponent<AudioSource>();
     }
 
     public void UnlockDoor()
@@ -44,6 +48,8 @@ public class Door : MonoBehaviour
 
         animDoorL.SetTrigger("OpenDoor");
         animDoorR.SetTrigger("OpenDoor");
+
+        openDoorSound.Play();
 
         transform.GetComponent<Item>().SetInteract(false);
         

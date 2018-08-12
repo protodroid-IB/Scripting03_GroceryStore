@@ -9,6 +9,7 @@ public class Interact : MonoBehaviour
     private GameController gameController;
     private DialogueController dialogueController;
     private GameObject dialogueUI;
+    private NarrativeDialogue narrativeDialogue;
 
     [SerializeField]
     private float interactRange = 20f;
@@ -27,7 +28,6 @@ public class Interact : MonoBehaviour
     private InventoryController inventory;
 
 
-
     // Use this for initialization
     void Awake ()
     {
@@ -35,9 +35,9 @@ public class Interact : MonoBehaviour
         itemInfoUI = GameObject.FindWithTag("ItemInfoUI");
         inventory = GameObject.FindWithTag("GameController").GetComponent<InventoryController>();
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        narrativeDialogue = GameObject.FindWithTag("GameController").GetComponent<NarrativeDialogue>();
         dialogueController = GameObject.FindWithTag("GameController").GetComponent<DialogueController>();
         dialogueUI = GameObject.FindWithTag("DialogueUI").gameObject;
-
     }
 	
 	// Update is called once per frame
@@ -70,12 +70,12 @@ public class Interact : MonoBehaviour
             {
                 if (interactable.GetInteractable())
                 {
-                    if(!gameController.GetNPCTalking() || !gameController.GetObjectiveDialogue().activeInHierarchy) itemInfoUI.SetActive(true);
+                    if(!gameController.GetNPCTalking() && !gameController.GetObjectiveDialogue().activeInHierarchy) itemInfoUI.SetActive(true);
 
                     if (gameController.GetObjectiveDialogue().activeInHierarchy) itemInfoUI.SetActive(false);
                     interactable.Hover();
 
-                    if (Input.GetMouseButtonDown(0) && !dialogueController.DialogueStarted())
+                    if (Input.GetMouseButtonDown(0) && !dialogueController.DialogueStarted() && !gameController.GetObjectiveDialogue().activeInHierarchy && !narrativeDialogue.GetOutroNarrativeStart())
                     {
                         Item newItem = interactable.GetInteractedItem();
 

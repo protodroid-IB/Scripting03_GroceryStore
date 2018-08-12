@@ -70,7 +70,7 @@ public class ScreenFader : MonoBehaviour
 
             if (alpha >= 1f) alpha = 1f;
 
-            if (blackImage.color == opaque)
+            if (blackImage.color.a == 1f)
             {
                 fadeToBlack = false;
                 fadeDone = true;
@@ -93,6 +93,8 @@ public class ScreenFader : MonoBehaviour
 
     public void FadeToBlack(float speed)
     {
+        blackImage.color = transparent;
+        alpha = 0f;
         fadeDone = false;
         fadeToBlack = true;
         fadeSpeed = speed;

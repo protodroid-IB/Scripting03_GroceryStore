@@ -18,6 +18,8 @@ public class DialogueController : MonoBehaviour
 
     private bool dialogueStarted = false;
 
+    private AudioSource dialogueProgressSound;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -25,7 +27,9 @@ public class DialogueController : MonoBehaviour
         dialogue = dialogueUI.transform.GetChild(0).GetChild(0).GetComponent<Text>();
 
         dialogueUI.SetActive(false);
-	}
+
+        dialogueProgressSound = transform.GetChild(0).GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -46,6 +50,8 @@ public class DialogueController : MonoBehaviour
 
     public void StartDialogue(NPCDialogue npcDialogue, string[] inDialogue)
     {
+        if (dialogueStarted == false) ProgressDialogueSound();
+
         dialogueUI.SetActive(true);
 
         dialogueStarted = true;
@@ -77,6 +83,8 @@ public class DialogueController : MonoBehaviour
                 dialogueIndex++;
 
                 UpdateDialogue();
+
+                ProgressDialogueSound();
             }
             else
             {
@@ -92,5 +100,15 @@ public class DialogueController : MonoBehaviour
     public bool DialogueStarted()
     {
         return dialogueStarted;
+    }
+
+    private void ProgressDialogueSound()
+    {
+        dialogueProgressSound.Play();
+    }
+
+    public Item GetCurrentNPC()
+    {
+        return currentTalkingNPC.GetComponent<Item>();
     }
 }

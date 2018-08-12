@@ -51,13 +51,14 @@ public class NarrativeDialogue : MonoBehaviour
     {
 		if(introNarrativeStart == true)
         {
-            if(introNarrativeDone == false)
+            if (introNarrativeDone == false)
             {
                 IntroNarrative();
             }
+            
         }
 
-        if(outroNarrativeStart == true)
+        if (outroNarrativeStart == true)
         {
             if (outroNarrativeDone == false)
             {
@@ -118,7 +119,54 @@ public class NarrativeDialogue : MonoBehaviour
 
     private void OutroNarrative()
     {
+        if(screenFader.FadeDone())
+        {
+            if (narrativeIndex < outroNarrative.Length)
+            {
+                if (typingDone == false)
+                {
+                    typingSpeed = outroNarrative[narrativeIndex].textSpeed;
+                    dialogue.color = outroNarrative[narrativeIndex].textColor;
+                    dialogue.text = TypeDialogue(outroNarrative[narrativeIndex].dialogue);
+                }
 
+                alpha = dialogue.color.a;
+            }
+            else
+            {
+
+                alpha -= 1f * Time.deltaTime;
+
+                if (alpha <= 0f) alpha = 0f;
+
+                Color newColor = new Color(dialogue.color.r, dialogue.color.g, dialogue.color.b, alpha);
+
+                dialogue.color = newColor;
+
+                if (alpha <= 0f)
+                {
+                    outroNarrativeDone = true;
+                    outroNarrativeStart = false;
+                    narrativeIndex = 0;
+
+                    // run credits
+
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (typingDone == true)
+                {
+                    narrativeIndex++;
+                    typingDone = false;
+                    outDialogue = "";
+                }
+
+            }
+        }
+        
+        
     }
 
 
@@ -133,6 +181,7 @@ public class NarrativeDialogue : MonoBehaviour
     public void StartOutroNarrative()
     {
         outroNarrativeStart = true;
+        FadeOutOfGame();
     }
 
     public bool IntroNarrativeDone()
@@ -148,6 +197,11 @@ public class NarrativeDialogue : MonoBehaviour
     private void FadeIntoGame()
     {
         screenFader.FadeFromBlack(0.01f);
+    }
+
+    private void FadeOutOfGame()
+    {
+        screenFader.FadeToBlack(0.01f);
     }
 
 
@@ -181,5 +235,11 @@ public class NarrativeDialogue : MonoBehaviour
         }
 
         return outDialogue;
+    }
+
+
+    public bool GetOutroNarrativeStart()
+    {
+        return outroNarrativeStart;
     }
 }

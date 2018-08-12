@@ -9,11 +9,16 @@ public class InventoryController : MonoBehaviour
 
     private UIHandler handlerUI;
 
+    private AudioSource[] inventorySounds;
+
 	// Use this for initialization
 	void Start ()
     {
         handlerUI = GetComponent<UIHandler>();
-	}
+
+        inventorySounds = transform.GetChild(1).GetComponents<AudioSource>();
+
+    }
 	
 
 
@@ -44,6 +49,7 @@ public class InventoryController : MonoBehaviour
             inventoryList[0] = inItem;
         }
 
+        inventorySounds[0].Play();
         handlerUI.UpdateInventoryUI(inventoryList);
     }
 
@@ -89,7 +95,7 @@ public class InventoryController : MonoBehaviour
     public void ClearInventory()
     {
         inventoryList.Clear();
-
+        inventorySounds[1].Play();
         handlerUI.UpdateInventoryUI(inventoryList);
     }
 

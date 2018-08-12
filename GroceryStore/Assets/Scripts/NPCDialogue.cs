@@ -88,6 +88,4 @@ public class NPCDialogue : MonoBehaviour
     {
         hasSpoken = inBool;
     }
-
-
 }
