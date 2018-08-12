@@ -103,7 +103,7 @@ public class NPCMission : MonoBehaviour
         if(npcDialogue.GetHasSpoken())
         {
             currentMissionState = NPCMissionState.AfterMission;
-            gameController.DigitFound(Random.Range(0, 10));
+            gameController.SetDigitFound(Random.Range(0, 10));
             npcDialogue.SetHasSpoken(false);
             inventory.ClearInventory();
         }

@@ -1,16 +1,11 @@
 TO-DO
 
-- disable item info when objective dialogue is on screen
-
-- disable dialogue interactions when objective dialogue is on screen
 
 - outro
 
 - audioscape
 
 - sound effects
-
-- freezer stocks
 
 - managers room
 

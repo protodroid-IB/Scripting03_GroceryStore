@@ -126,9 +126,9 @@ public class UIHandler : MonoBehaviour
 
 
 
-    public void UpdateObjectiveDialogue(string inObjective)
+    public void UpdateObjectiveDialogue(string inTitle, string inObjective)
     {
-
         GameObject.FindWithTag("ObjectiveDialogue").transform.GetChild(2).GetComponent<Text>().text = inObjective.ToUpper();
+        GameObject.FindWithTag("ObjectiveDialogue").transform.GetChild(1).GetComponent<Text>().text = inTitle.ToUpper();
     }
 }

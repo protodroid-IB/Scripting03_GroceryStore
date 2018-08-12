@@ -70,8 +70,9 @@ public class Interact : MonoBehaviour
             {
                 if (interactable.GetInteractable())
                 {
-                    if(!gameController.GetNPCTalking()) itemInfoUI.SetActive(true);
+                    if(!gameController.GetNPCTalking() || !gameController.GetObjectiveDialogue().activeInHierarchy) itemInfoUI.SetActive(true);
 
+                    if (gameController.GetObjectiveDialogue().activeInHierarchy) itemInfoUI.SetActive(false);
                     interactable.Hover();
 
                     if (Input.GetMouseButtonDown(0) && !dialogueController.DialogueStarted())

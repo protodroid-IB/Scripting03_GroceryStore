@@ -29,6 +29,8 @@ public class GameController : MonoBehaviour
     private bool keycodeFound = false;
     private int digitsFound = 0;
     private int[] digits;
+    private bool digitFoundDialogue = false;
+    private int foundDigit = -1;
 
 	// Use this for initialization
 	void Start ()
@@ -99,7 +101,7 @@ public class GameController : MonoBehaviour
                     objectiveDialogue.SetActive(true);
 
                     if (objectiveDialogue.activeInHierarchy == true)
-                        handlerUI.UpdateObjectiveDialogue(objectives[0]);
+                        handlerUI.UpdateObjectiveDialogue("OBJECTIVE UPDATED", objectives[0]);
                 }
                    
 
@@ -133,7 +135,7 @@ public class GameController : MonoBehaviour
             objectiveDialogue.SetActive(true);
 
             if(objectiveDialogue.activeInHierarchy == true)
-                handlerUI.UpdateObjectiveDialogue(objectives[1]);
+                handlerUI.UpdateObjectiveDialogue("OBJECTIVE UPDATED", objectives[1]);
 
             if (Timer(ref timer, 4f, true))
             {
@@ -161,7 +163,7 @@ public class GameController : MonoBehaviour
             objectiveDialogue.SetActive(true);
 
             if (objectiveDialogue.activeInHierarchy == true)
-                handlerUI.UpdateObjectiveDialogue(objectives[2]);
+                handlerUI.UpdateObjectiveDialogue("OBJECTIVE UPDATED", objectives[2]);
 
             if (Timer(ref timer, 4f, true))
             {
@@ -169,6 +171,11 @@ public class GameController : MonoBehaviour
                 currentObjectiveState = ObjectiveState.KeyFound;
                 fpsController.enabled = true;
             }
+        }
+        
+        if(digitFoundDialogue == true)
+        {
+            DigitFoundDialogue();
         }
 
         handlerUI.UpdateObjective(objectives[1]);
@@ -258,5 +265,39 @@ public class GameController : MonoBehaviour
         }
 
         return done;
+    }
+
+
+
+    public GameObject GetObjectiveDialogue()
+    {
+        return objectiveDialogue;
+    }
+
+
+
+    private void DigitFoundDialogue()
+    {
+        fpsController.enabled = false;
+
+        objectiveDialogue.SetActive(true);
+
+        if (objectiveDialogue.activeInHierarchy == true)
+            handlerUI.UpdateObjectiveDialogue("KEYCODE DIGIT FOUND!", "YOU GOT THE DIGIT " + foundDigit.ToString());
+
+        if (Timer(ref timer, 4f, true))
+        {
+            objectiveDialogue.SetActive(false);
+            DigitFound(foundDigit);
+            fpsController.enabled = true;
+            digitFoundDialogue = false;
+        }
+    } 
+
+
+    public void SetDigitFound(int inDigit)
+    {
+        foundDigit = inDigit;
+        digitFoundDialogue = true;
     }
 }
