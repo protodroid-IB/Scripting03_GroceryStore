@@ -288,27 +288,12 @@ public class GameController : MonoBehaviour
 
     private void Finish()
     {
-        // disable player controls
-        fpsController.enabled = false;
 
         // if the outro narrative is done
         if(narrativeDialogue.OutroNarrativeDone())
         {
-            // and credits have not run
-            if(runCredits == false)
-            {
-                runCredits = true;
-                
-                //fade to the credits
-                screenFader.FadeToBlack(1f);
-            }
-
-            // when the fade is done, load the credits scene
-            if(screenFader.FadeDone())
-            {
+                fpsController.enabled = true;
                 SceneManager.LoadScene("Credits");
-            }
-
         }
     }
 

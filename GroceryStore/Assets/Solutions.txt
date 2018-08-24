@@ -1,0 +1,19 @@
+SOLUTIONS
+
+* for all of the listed NPCs you must give them any three of the items listed next to them.
+
+BUDDY: Brocolli, Basil, Brussel Sprouts, Cucmber, Green Beans, Green Capsicum, Lettuce, Spring Onion, Zucchini
+
+LOLA: Tomato, Garlic, Basil, Canned Tomato, Blue Cheese, Cheddar Cheese, Spaghetti
+
+JEFF: Eggs, Milk, Red Chilli, Blackcurrent Juice, Tomato Juice, Coffee Pods, Instant Coffee, Chai Tea, Hot Chocolate Powder, Mocha Powder, Peppermint Tea, Breakfast Drink, Bread Loaf, Bread Roll
+
+LESLIE: Chocolate Ice Cream, Strawberry Ice Cream, Vanilla Ice Cream, Chocolate Ice Cream Tub, Mint Ice Cream Tub, Strawberry Ice Cream Tub, Vanilla Ice Cream Tub, Block of Chocolate, Snake Lollies
+
+EMERY: Whiskey, Cigarettes, Tuna, Baked Beans, Any Frozen Pizza, Any Icecream, Any Microwave Meal, Barbeque Chips, Block of Chocolate, Museli Bar, Shortbread Biscuits, Snake Lollies
+
+AXEL: Shortbread Biscuits, Barbeque Chips, Block of Chocolate, Snake Lollies, Museli Bar, Beer
+
+MORTIMUS: Bleach, Dishwashing Liquid, Paper Towels, Sponges, Toilet Paper, Washing Powder
+
+LACHLAN: Baked Beans, Canned Corn, Canned Mushrooms, Tuna, Any Microwave Meals, Any Frozen Pizza, Frozen Chips, Frozen Pies
