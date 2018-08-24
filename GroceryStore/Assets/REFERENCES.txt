@@ -1,25 +1,29 @@
-https://i.pinimg.com/564x/82/27/24/8227242b7399035899faa15c7cb8acab--cash-register-keyboard.jpg
 
-FPS CONTROLLER
+Bear Hugs [Font]. https://www.dafont.com/bear-hugs.font
 
-UNITY
+Carrington, A. (2016). Taffy (For Harrison) [Online]. Perth. Retrieved from https://axelcarrington.bandcamp.com/album/a-multitude-of-sighs
 
-PROBUILDER
+Cash Register Keys Image. [Image]. Retrieved from https://i.pinimg.com/564x/82/27/24/8227242b7399035899faa15c7cb8acab--cash-register-keyboard.jpg
 
-PROGRIDS
+Lavelle, S. BFXR (Version 1.4.1). https://www.bfxr.net/.
 
-STANDARD ASSETS
+Player's Town. (2016). Boxes (Version 1.0) [Windows].
 
-ambient supermarket
-https://www.freesfx.co.uk/rx2/mp3s/4/15718_1460483554.mp3
+Refrigerator or Freezer Running. (2018). [Online]. Retrieved from https://www.freesfx.co.uk/rx2/mp3s/2/13989_1459882089.mp3
 
-fridge 
-https://www.freesfx.co.uk/rx2/mp3s/2/13989_1459882089.mp3
+Supermarket Ambience. (2018). [Online]. Retrieved from https://www.freesfx.co.uk/rx2/mp3s/4/15718_1460483554.mp3
 
-fruit / veg / food / pixel art
-https://www.deviantart.com/thisisellian/art/Food-100-fruits-vegetables-and-other-goods-411948559
+ThisIsEllian. (2013). Food - 100 fruits, vegetables and other goods [Image]. Retrieved from https://www.deviantart.com/thisisellian/art/Food-100-fruits-vegetables-and-other-goods-411948559
 
-font
-https://www.dafont.com/bear-hugs.font
+Unity Technologies. (2017). Post Processing Stack (Version 1.0.4) [Windows].
 
-https://assetstore.unity.com/packages/3d/boxes-63740
+Unity Technologies. (2017). Probuilder (Version 2.9.8f3) [Windows].
+
+Unity Technologies. (2017). ProGrids (Version 2.5.0f0) [Windows].
+
+Unity Technologies. (2017). Standard Assets (Version 1.1.5) [Windows].
+
+Unity Technologies. (2018). Unity® (Version 2018.1.2f1) [Windows].
+
+
+
