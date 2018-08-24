@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script Name: InventoryController.cs
+// Written By: Laurence Valentini
+
+
 public class InventoryController : MonoBehaviour
 {
 

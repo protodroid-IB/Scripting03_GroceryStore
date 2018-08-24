@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script Name: GlobalEnums.cs
+// Written By: Laurence Valentini
+
 public enum ItemType { None, Stock, Door, NPC, Freezer};
 
 public enum DoorState { Locked, Unlocked};

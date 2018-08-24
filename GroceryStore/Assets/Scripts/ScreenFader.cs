@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script Name: ScreenFader.cs
+// Written By: Laurence Valentini
+
 public class ScreenFader : MonoBehaviour
 {
     private Image blackImage;

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script Name: NPCMission.cs
+// Written By: Laurence Valentini
+
+
 public class NPCMission : MonoBehaviour
 {
     private GameController gameController;

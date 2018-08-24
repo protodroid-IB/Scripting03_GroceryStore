@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script Name: Interactable.cs
+// Written By: Laurence Valentini
+
 [RequireComponent(typeof(Item))]
 public class Interactable : MonoBehaviour
 {

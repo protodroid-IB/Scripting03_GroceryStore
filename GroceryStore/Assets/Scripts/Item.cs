@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script Name: Item.cs
+// Written By: Laurence Valentini
+
+
 [RequireComponent(typeof(Interactable))]
 public class Item : MonoBehaviour
 {

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script Name: NarrativeDialogue.cs
+// Written By: Laurence Valentini
+
+
 public class NarrativeDialogue : MonoBehaviour
 {
     private ScreenFader screenFader;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+// Script Name: Interact.cs
+// Written By: Laurence Valentini
+
 public class Interact : MonoBehaviour
 {
     private Camera mainCam;

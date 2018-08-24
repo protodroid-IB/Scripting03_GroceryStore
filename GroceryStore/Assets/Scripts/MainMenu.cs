@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Script Name: MainMenu.cs
+// Written By: Laurence Valentini
+
+
 public class MainMenu : MonoBehaviour
 {
     private ScreenFader screenFader;

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
+
+// Script Name: NPCDialogue.cs
+// Written By: Laurence Valentini
+
 public class NPCDialogue : MonoBehaviour
 {
     private bool isTalking = false;
